@@ -8,10 +8,10 @@ split=1
 results_path='split'${split}'_results'
 mkdir -p ${base_path}'/'${results_path}
 
-python3 main.py --gpu_devices 0,1,2,3 --batch_size 128 --n_threads 12 \
-    --audiovisual --checkpoint 20 --n_epochs 60 \
+python3 main.py --gpu_devices 0 --batch_size 32 --n_threads 12 \
+    --audiovisual --checkpoint 10 --n_epochs 60 \
     --root_path ${base_path} --result_path ${results_path} \
-    --pretrain_path ./data/pretrained_models/stavis_visual_only/visual_split${split}_save_60.pth  \
+    --resume_path ./data/pretrained_models/stavis_audiovisual/audiovisual_split${split}_save_60.pth \
     --audio_pretrain_path ./data/pretrained_models/soundnet8.pth \
 	--annotation_path_coutrot1_train ./data/fold_lists/Coutrot_db1_list_train_${split}_fps.txt \
 	--annotation_path_coutrot1_test ./data/fold_lists/Coutrot_db1_list_test_${split}_fps.txt \
