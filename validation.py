@@ -83,7 +83,7 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
 
             loss_all_tmp['global'] = loss_all_tmp['sal']
 
-            losses.update(loss_all.data[0], inputs.size(0))
+            losses.update(loss_all.data.item(), inputs.size(0))
             losses_out['global'].update(loss_all_tmp['global'].data, inputs.size(0))
 
             batch_time.update(time.time() - end_time)
