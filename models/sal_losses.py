@@ -21,7 +21,7 @@ def cc_score(x, y, weights, batch_average=False, reduce=True):
     ym = y.sub(mean_y)
     r_num = torch.sum(torch.sum(torch.mul(xm,ym), 1, keepdim=True), 2, keepdim=True)
     r_den_x = torch.sum(torch.sum(torch.mul(xm, xm), 1, keepdim=True), 2, keepdim=True)
-    r_den_y = torch.sum(torch.sum(torch.mul(ym, ym), 1, keepdim=True), 2, keepdim=True) + np.asscalar(np.finfo(np.float32).eps)
+    r_den_y = torch.sum(torch.sum(torch.mul(ym, ym), 1, keepdim=True), 2, keepdim=True) + torch.tensor(np.finfo(np.float32).eps)
     r_val = torch.div(r_num, torch.sqrt(torch.mul(r_den_x,r_den_y)))
     r_val = torch.mul(r_val.squeeze(),weights)
     if batch_average:
@@ -45,7 +45,8 @@ def nss_score(x, y, weights, batch_average=False, reduce=True):
     x_norm = torch.div(torch.sub(x, mean_x), std_x)
     r_num = torch.sum(torch.sum(torch.mul(x_norm, y), 1, keepdim=True), 2, keepdim=True)
     r_den = torch.sum(torch.sum(y, 1, keepdim=True), 2, keepdim=True)
-    r_val = torch.div(r_num, r_den + np.asscalar(np.finfo(np.float32).eps))
+    eps = torch.tensor(np.finfo(np.float32).eps)
+    r_val = torch.div(r_num, r_den + eps.item())    
     r_val = torch.mul(r_val.squeeze(), weights)
     if batch_average:
         r_val = -torch.sum(r_val) / torch.sum(weights)
