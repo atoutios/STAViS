@@ -79,23 +79,11 @@ if __name__ == '__main__':
         temporal_transform = TemporalRandomCrop(opt.sample_duration)
         target_transform = Label()
 
-        opt.dataset = 'diem'
-        training_data_diem = get_training_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'coutrot1'
-        training_data_coutrot1 = get_training_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'coutrot2'
-        training_data_coutrot2 = get_training_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'summe'
-        training_data_summe = get_training_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'etmd'
-        training_data_etmd = get_training_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'avad'
-        training_data_avad = get_training_set(opt, spatial_transform, temporal_transform, target_transform)
+        opt.dataset = 'feasibility'
+        training_data_feasibility = get_training_set(opt, spatial_transform, temporal_transform, target_transform)
 
-        training_data = torch.utils.data.ConcatDataset([training_data_diem,
-                                                        training_data_coutrot1, training_data_coutrot2,
-                                                        training_data_summe, training_data_etmd,
-                                                        training_data_avad])
+
+        training_data = torch.utils.data.ConcatDataset([training_data_feasibility])
 
         opt.batch_sizes = {'global': opt.effective_batch_size,
                            'sal': opt.effective_batch_size}
@@ -173,23 +161,10 @@ if __name__ == '__main__':
         temporal_transform = TemporalCenterCrop(opt.sample_duration)
         target_transform = Label()
 
-        opt.dataset = 'diem'
-        validation_data_diem = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'coutrot1'
-        validation_data_coutrot1 = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'coutrot2'
-        validation_data_coutrot2 = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'summe'
-        validation_data_summe = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'etmd'
-        validation_data_etmd = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
-        opt.dataset = 'avad'
-        validation_data_avad = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
+        opt.dataset = 'feasibility'
+        validation_data_feasibility = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
 
-        validation_data = torch.utils.data.ConcatDataset([validation_data_diem,
-                                                        validation_data_coutrot1, validation_data_coutrot2,
-                                                        validation_data_summe, validation_data_etmd,
-                                                        validation_data_avad])
+        validation_data = torch.utils.data.ConcatDataset([validation_data_feasibility])
 
         val_loader = torch.utils.data.DataLoader(
             validation_data,
@@ -238,7 +213,7 @@ if __name__ == '__main__':
         temporal_transform = LoopPadding(opt.sample_duration)
         target_transform = VideoID()
 
-        opt.dataset = 'diem'
+        opt.dataset = 'feasibility'
         test_data = get_test_set(opt, spatial_transform, temporal_transform,
                                  target_transform)
         test_loader = torch.utils.data.DataLoader(
@@ -249,57 +224,4 @@ if __name__ == '__main__':
             pin_memory=True)
         test_sal.test(test_loader, model, opt)
 
-        opt.dataset = 'coutrot1'
-        test_data = get_test_set(opt, spatial_transform, temporal_transform,
-                                 target_transform)
-        test_loader = torch.utils.data.DataLoader(
-            test_data,
-            batch_size=opt.batch_size,
-            shuffle=False,
-            num_workers=opt.n_threads,
-            pin_memory=True)
-        test_sal.test(test_loader, model, opt)
-
-        opt.dataset = 'coutrot2'
-        test_data = get_test_set(opt, spatial_transform, temporal_transform,
-                                 target_transform)
-        test_loader = torch.utils.data.DataLoader(
-            test_data,
-            batch_size=opt.batch_size,
-            shuffle=False,
-            num_workers=opt.n_threads,
-            pin_memory=True)
-        test_sal.test(test_loader, model, opt)
-
-        opt.dataset = 'summe'
-        test_data = get_test_set(opt, spatial_transform, temporal_transform,
-                                 target_transform)
-        test_loader = torch.utils.data.DataLoader(
-            test_data,
-            batch_size=opt.batch_size,
-            shuffle=False,
-            num_workers=opt.n_threads,
-            pin_memory=True)
-        test_sal.test(test_loader, model, opt)
-
-        opt.dataset = 'etmd'
-        test_data = get_test_set(opt, spatial_transform, temporal_transform,
-                                 target_transform)
-        test_loader = torch.utils.data.DataLoader(
-            test_data,
-            batch_size=opt.batch_size,
-            shuffle=False,
-            num_workers=opt.n_threads,
-            pin_memory=True)
-        test_sal.test(test_loader, model, opt)
-
-        opt.dataset = 'avad'
-        test_data = get_test_set(opt, spatial_transform, temporal_transform,
-                                 target_transform)
-        test_loader = torch.utils.data.DataLoader(
-            test_data,
-            batch_size=opt.batch_size,
-            shuffle=False,
-            num_workers=opt.n_threads,
-            pin_memory=True)
-        test_sal.test(test_loader, model, opt)
+        
