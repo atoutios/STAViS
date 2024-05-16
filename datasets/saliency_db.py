@@ -100,7 +100,7 @@ def make_dataset(root_path, annotation_path, salmap_path, audio_path,
 		audio_wav_path = os.path.join(audio_path,video_names[i],video_names[i]+'.wav')
 		if not os.path.exists(audio_wav_path):
 			continue
-		[audiowav,Fs]=torchaudio.load(audio_wav_path, normalization=False)
+		[audiowav,Fs]=torchaudio.load(audio_wav_path, normalize=False)
 		audiowav = audiowav * (2 ** -23)
 		n_samples = Fs/float(video_fps[i])
 		starts=np.zeros(n_frames+1, dtype=int)
