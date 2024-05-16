@@ -222,7 +222,7 @@ class saliency_db(data.Dataset):
 		target = {'salmap':[],'binmap':[]}
 		target['salmap'] = pil_loader_sal(os.path.join(annot_path, 'eyeMap_{:05d}.jpg'.format(med_indices)))
 		tmp_mat = sio.loadmat(os.path.join(annot_path_bin, 'fixMap_{:05d}.mat'.format(med_indices)))
-		binmap_np = np.array(Image.fromarray(tmp_mat['eyeMap'].astype(float)).resize((320, 240), resample = Image.BILINEAR)) > 0
+		binmap_np = np.array(Image.fromarray(tmp_mat['eyemap'].astype(float)).resize((320, 240), resample = Image.BILINEAR)) > 0
 		target['binmap'] = Image.fromarray((255*binmap_np).astype('uint8'))
 		if self.exhaustive_sampling:
 			target['video'] = self.data[index]['video_id']
