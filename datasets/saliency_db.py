@@ -193,6 +193,7 @@ class saliency_db(data.Dataset):
 				audioind = iaudio
 				flagexists = 1
 				break
+		flagexists = 0
 
 		audioexcer  = torch.zeros(1,self.max_audio_win)  ## maximum audio excerpt duration
 		data = {'rgb':[], 'audio':[]}
