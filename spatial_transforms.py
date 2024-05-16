@@ -8,6 +8,9 @@ try:
 except ImportError:
     accimage = None
 
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning, message='TypedStorage is deprecated')
+
 
 class Compose(object):
     """Composes several transforms together.
