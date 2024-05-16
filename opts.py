@@ -54,6 +54,12 @@ def parse_opts():
         type=str,
         help='Directory path of feasibility Videos')
    
+    # Audio paths for different datasets
+    parser.add_argument(
+        '--audio_path_feasibility',
+        default='./data/video_audio/feasibility',
+        type=str,
+        help='Directory path of feasibility Videos Audio')
 
     # Video lists for different splits
     parser.add_argument(
