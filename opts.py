@@ -61,6 +61,11 @@ def parse_opts():
         default='./data/fold_lists/feasibility_list_train_fps.txt',
         type=str,
         help='Annotation list for feasibility train')
+    parser.add_argument(
+        '--annotation_path_feasibility_test',
+        default='./data/fold_lists/feasibility_list_test_fps.txt',
+        type=str,
+        help='Annotation list for feasibility test')
 
 
     # Ground truth saliency maps paths
