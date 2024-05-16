@@ -10,7 +10,7 @@ def get_training_set(opt, spatial_transform, temporal_transform,
 	if opt.dataset == 'feasibility':
 		training_data = saliency_db(
 			opt.video_path_feasibility,
-			opt.annotation_path_diem_feasibility,
+			opt.annotation_path_feasibility,
 			opt.salmap_path_feasibility,
 			opt.audio_path_feasibility,
 			spatial_transform=spatial_transform,

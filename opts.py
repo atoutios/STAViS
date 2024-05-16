@@ -49,161 +49,27 @@ def parse_opts():
 
     # Video frames paths for different datasets
     parser.add_argument(
-        '--video_path_diem',
-        default='./data/video_frames/DIEM',
+        '--video_path_feasibility',
+        default='./data/video_frames/feasibility',
         type=str,
-        help='Directory path of DIEM Videos')
-    parser.add_argument(
-        '--video_path_coutrot1',
-        default='./data/video_frames/Coutrot_db1',
-        type=str,
-        help='Directory path of Coutrot db1 Videos')
-    parser.add_argument(
-        '--video_path_coutrot2',
-        default='./data/video_frames/Coutrot_db2',
-        type=str,
-        help='Directory path of Coutrot db2 Videos')
-    parser.add_argument(
-        '--video_path_summe',
-        default='./data/video_frames/SumMe',
-        type=str,
-        help='Directory path of SumMe Videos')
-    parser.add_argument(
-        '--video_path_etmd',
-        default='./data/video_frames/ETMD_av',
-        type=str,
-        help='Directory path of ETMD Videos')
-    parser.add_argument(
-        '--video_path_avad',
-        default='./data/video_frames/AVAD',
-        type=str,
-        help='Directory path of AVAD Videos')
-
-    # Audio paths for different datasets
-    parser.add_argument(
-        '--audio_path_diem',
-        default='./data/video_audio/DIEM',
-        type=str,
-        help='Directory path of DIEM Videos Audio')
-    parser.add_argument(
-        '--audio_path_coutrot1',
-        default='./data/video_audio/Coutrot_db1',
-        type=str,
-        help='Directory path of Coutrot db1 Videos Audio')
-    parser.add_argument(
-        '--audio_path_coutrot2',
-        default='./data/video_audio/Coutrot_db2',
-        type=str,
-        help='Directory path of Coutrot db2 Videos Audio')
-    parser.add_argument(
-        '--audio_path_summe',
-        default='./data/video_audio/SumMe',
-        type=str,
-        help='Directory path of SumMe Videos Audio')
-    parser.add_argument(
-        '--audio_path_etmd',
-        default='./data/video_audio/ETMD_av',
-        type=str,
-        help='Directory path of ETMD Videos Audio')
-    parser.add_argument(
-        '--audio_path_avad',
-        default='./data/video_audio/AVAD',
-        type=str,
-        help='Directory path of AVAD Videos Audio')
+        help='Directory path of feasibility Videos')
+   
 
     # Video lists for different splits
     parser.add_argument(
-        '--annotation_path_diem_train',
-        default='./data/fold_lists/DIEM_list_train_fps.txt',
+        '--annotation_path_feasibility_train',
+        default='./data/fold_lists/feasibility_list_train_fps.txt',
         type=str,
-        help='Annotation list for DIEM train')
-    parser.add_argument(
-        '--annotation_path_diem_test',
-        default='./data/fold_lists/DIEM_list_test_fps.txt',
-        type=str,
-        help='Annotation list for DIEM test')
-    parser.add_argument(
-        '--annotation_path_coutrot1_train',
-        default='./data/fold_lists/Coutrot_db1_list_train_1_fps.txt',
-        type=str,
-        help='Annotation list for Coutrot db1 train')
-    parser.add_argument(
-        '--annotation_path_coutrot1_test',
-        default='./data/fold_lists/Coutrot_db1_list_test_1_fps.txt',
-        type=str,
-        help='Annotation list for  Coutrot db1 test')
-    parser.add_argument(
-        '--annotation_path_coutrot2_train',
-        default='./data/fold_lists/Coutrot_db2_list_train_1_fps.txt',
-        type=str,
-        help='Annotation list for Coutrot db2 train')
-    parser.add_argument(
-        '--annotation_path_coutrot2_test',
-        default='./data/fold_lists/Coutrot_db2_list_test_1_fps.txt',
-        type=str,
-        help='Annotation list for  Coutrot db2 test')
-    parser.add_argument(
-        '--annotation_path_summe_train',
-        default='./data/fold_lists/SumMe_list_train_1_fps.txt',
-        type=str,
-        help='Annotation list for SumMe test')
-    parser.add_argument(
-        '--annotation_path_summe_test',
-        default='./data/fold_lists/SumMe_list_test_1_fps.txt',
-        type=str,
-        help='Annotation list for SumMe test')
-    parser.add_argument(
-        '--annotation_path_etmd_train',
-        default='./data/fold_lists/ETMD_av_list_train_1_fps.txt',
-        type=str,
-        help='Annotation list for ETMD test')
-    parser.add_argument(
-        '--annotation_path_etmd_test',
-        default='./data/fold_lists/ETMD_av_list_test_1_fps.txt',
-        type=str,
-        help='Annotation list for ETMD test')
-    parser.add_argument(
-        '--annotation_path_avad_train',
-        default='./data/fold_lists/AVAD_list_train_1_fps.txt',
-        type=str,
-        help='Annotation list for AVAD test')
-    parser.add_argument(
-        '--annotation_path_avad_test',
-        default='./data/fold_lists/AVAD_list_test_1_fps.txt',
-        type=str,
-        help='Annotation list for AVAD test')
+        help='Annotation list for feasibility train')
+
 
     # Ground truth saliency maps paths
     parser.add_argument(
-        '--salmap_path_diem',
-        default='./data/annotations/DIEM',
+        '--salmap_path_feasibility',
+        default='./data/annotations/feasibility',
         type=str,
-        help='Salmaps annotations DIEM')
-    parser.add_argument(
-        '--salmap_path_coutrot1',
-        default='./data/annotations/Coutrot_db1',
-        type=str,
-        help='Salmaps annotations Coutrot db1')
-    parser.add_argument(
-        '--salmap_path_coutrot2',
-        default='./data/annotations/Coutrot_db2',
-        type=str,
-        help='Salmaps annotations Coutrot db2')
-    parser.add_argument(
-        '--salmap_path_summe',
-        default='./data/annotations/SumMe',
-        type=str,
-        help='Salmaps annotations SumMe')
-    parser.add_argument(
-        '--salmap_path_etmd',
-        default='./data/annotations/ETMD_av',
-        type=str,
-        help='Salmaps annotations ETMD')
-    parser.add_argument(
-        '--salmap_path_avad',
-        default='./data/annotations/AVAD',
-        type=str,
-        help='Salmaps annotations AVAD')
+        help='Salmaps annotations feasibility')
+
 
     parser.add_argument(
         '--sample_size',
