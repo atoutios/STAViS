@@ -28,8 +28,9 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
         nss = AverageMeter()
 
         end_time = time.time()
-        for i, (data, targets, valid) in enumerate(data_loader,0):
-            print(i)
+        i = -1
+        for (data, targets, valid) in data_loader:
+            i += 1
             data_time.update(time.time() - end_time)
 
             if not opt.no_cuda:
