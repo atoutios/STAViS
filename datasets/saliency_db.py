@@ -70,6 +70,7 @@ def read_sal_text(txt_file):
 
 def make_dataset(root_path, annotation_path, salmap_path, audio_path,
 				 step, step_duration):
+	print(f"In make_dataset with annotation path: {annotation_path}")
 	data = read_sal_text(annotation_path)
 	video_names = data['names']
 	video_nframes = data['nframes']
@@ -166,6 +167,8 @@ class saliency_db(data.Dataset):
 		else:
 			self.exhaustive_sampling = False
 			step = max(1, step_duration - sample_duration)
+
+		print("In saliency_db class")
 
 		self.data,self.audiodata = make_dataset(
 			root_path, annotation_path, subset, audio_path,
