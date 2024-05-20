@@ -175,9 +175,9 @@ if __name__ == '__main__':
             drop_last=True,
             pin_memory=True)
         
-        print("Iterate over val_loader")
-        for data in val_loader:
-            print("Data: ", data)
+        # print("Iterate over val_loader")
+        # for data in val_loader:
+        #     print("Data: ", data)
 
         val_logger = Logger(
             os.path.join(opt.result_path, 'val.log'), ['epoch', 'loss', 'loss_sal', 'sal_cross', 'cc', 'nss'])
