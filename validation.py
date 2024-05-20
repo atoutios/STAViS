@@ -37,8 +37,6 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
             targets['binmap'] = targets['binmap'].float()
             valid['sal'] = valid['sal'].float()
 
-            valid['sal'] = 1.0
-
             curr_batch_size = inputs.size(0)
 
             while inputs.size(0) < opt.batch_size:
@@ -70,31 +68,21 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
 
             loss_all_tmp = {'global': 0, 'sal': 0}
 
-            # if sum(valid['sal']) > 0:
-            #     cc_tmp = sal_losses_CC[-1].data / nonzero(valid['sal'])[:, 0].size(0)
-            #     nss_tmp = sal_losses_NSS[-1].data / nonzero(valid['sal'])[:, 0].size(0)
-            #     sal_cross_tmp = torch.sum(sal_losses_BCE[-1]) / nonzero(valid['sal'])[:, 0].size(0)
-            #     cc.update(cc_tmp, nonzero(valid['sal'])[:, 0].size(0))
-            #     nss.update(nss_tmp, nonzero(valid['sal'])[:, 0].size(0))
-            #     sal_cross.update(sal_cross_tmp, nonzero(valid['sal'])[:, 0].size(0))
-            #     loss_all_tmp['sal'] = opt.sal_weights[0] * sal_losses_BCE[-1] + \
-            #                           opt.sal_weights[1] * sal_losses_CC[-1] + \
-            #                           opt.sal_weights[2] * sal_losses_NSS[-1]
-            #     loss_all_tmp['sal'] = loss_all_tmp['sal'] / nonzero(valid['sal'])[:, 0].size(0)
-            #     losses_out['sal'].update(loss_all_tmp['sal'].data, nonzero(valid['sal'])[:, 0].size(0))
-
-            cc_tmp = sal_losses_CC[-1].data
-            nss_tmp = sal_losses_NSS[-1].data
-            sal_cross_tmp = torch.sum(sal_losses_BCE[-1])
-            cc.update(cc_tmp)
-            nss.update(nss_tmp)
-            sal_cross.update(sal_cross_tmp)
-            
-            loss_all_tmp['sal'] = opt.sal_weights[0] * sal_losses_BCE[-1] + \
-                                    opt.sal_weights[1] * sal_losses_CC[-1] + \
-                                    opt.sal_weights[2] * sal_losses_NSS[-1]
-            loss_all_tmp['sal'] = loss_all_tmp['sal'] 
-            losses_out['sal'].update(loss_all_tmp['sal'].data)
+            if sum(valid['sal']) > 0:
+                cc_tmp = sal_losses_CC[-1].data / nonzero(valid['sal'])[:, 0].size(0)
+                print(cc_tmp)
+                print(nonzero(valid['sal'])[:, 0].size(0))
+                print('____')
+                nss_tmp = sal_losses_NSS[-1].data / nonzero(valid['sal'])[:, 0].size(0)
+                sal_cross_tmp = torch.sum(sal_losses_BCE[-1]) / nonzero(valid['sal'])[:, 0].size(0)
+                cc.update(cc_tmp, nonzero(valid['sal'])[:, 0].size(0))
+                nss.update(nss_tmp, nonzero(valid['sal'])[:, 0].size(0))
+                sal_cross.update(sal_cross_tmp, nonzero(valid['sal'])[:, 0].size(0))
+                loss_all_tmp['sal'] = opt.sal_weights[0] * sal_losses_BCE[-1] + \
+                                      opt.sal_weights[1] * sal_losses_CC[-1] + \
+                                      opt.sal_weights[2] * sal_losses_NSS[-1]
+                loss_all_tmp['sal'] = loss_all_tmp['sal'] / nonzero(valid['sal'])[:, 0].size(0)
+                losses_out['sal'].update(loss_all_tmp['sal'].data, nonzero(valid['sal'])[:, 0].size(0))
 
             loss_all_tmp['global'] = loss_all_tmp['sal']
 
