@@ -17,6 +17,8 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
 
     with torch.no_grad():
 
+        print("with torch.no_grad()")
+
         batch_time = AverageMeter()
         data_time = AverageMeter()
         losses_out = {'global': AverageMeter(), 'sal': AverageMeter()}
