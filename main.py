@@ -165,8 +165,6 @@ if __name__ == '__main__':
         validation_data_feasibility = get_test_set(opt, spatial_transform, temporal_transform, target_transform)
 
         validation_data = torch.utils.data.ConcatDataset([validation_data_feasibility])
-
-        print(f"*** Size of validation_data_feasibility: {validation_data_feasibility.shape}")
         
 
         val_loader = torch.utils.data.DataLoader(
