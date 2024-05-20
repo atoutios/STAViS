@@ -11,16 +11,16 @@ from models.sal_losses import cross_entropy_loss, cc_score, nss_score
 def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
     print('validation at epoch {}'.format(epoch))
 
-    print(f'len(data_loader.dataset) in val_epoch: {len(data_loader.dataset)}' )
+    # print(f'len(data_loader.dataset) in val_epoch: {len(data_loader.dataset)}' )
 
-    for data in data_loader:
-        print("Data: ", data)
+    # for data in data_loader:
+    #     print("Data: ", data)
 
     model.eval()
 
     with torch.no_grad():
 
-        print("with torch.no_grad()")
+        #print("with torch.no_grad()")
 
         batch_time = AverageMeter()
         data_time = AverageMeter()
@@ -32,7 +32,7 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
 
         end_time = time.time()
         for i, (data, targets, valid) in enumerate(data_loader,0):
-            print(i)
+            #print(i)
             data_time.update(time.time() - end_time)
 
             if not opt.no_cuda:
@@ -46,7 +46,7 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
             valid['sal'] = valid['sal'].float()
 
             curr_batch_size = inputs.size(0)
-            print(f'Current batch size: {curr_batch_size}')
+            #print(f'Current batch size: {curr_batch_size}')
 
             while inputs.size(0) < opt.batch_size:
                 inputs = torch.cat((inputs, inputs[0:1, :]), 0)
@@ -58,7 +58,7 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
 
             loss = {'sal': []}
 
-            print(f"len(outputs['sal'] {len(outputs['sal'])}")
+            #print(f"len(outputs['sal'] {len(outputs['sal'])}")
 
             sal_losses_BCE = [0] * len(outputs['sal'])
             sal_losses_CC = [0] * len(outputs['sal'])
@@ -75,11 +75,11 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
                                 opt.sal_weights[1] * loss['sal'][1] + \
                                 opt.sal_weights[2] * loss['sal'][2]
             
-            print(f"loss['sal_total'] {loss['sal_total']}")
+            #print(f"loss['sal_total'] {loss['sal_total']}")
 
             loss_all = loss['sal_total'] / opt.batch_sizes['sal']
 
-            print(f"loss_all['sal_total'] {loss_all['sal_total']}")
+            #print(f"loss_all['sal_total'] {loss_all['sal_total']}")
 
 
             loss_all_tmp = {'global': 0, 'sal': 0}
