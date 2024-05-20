@@ -13,14 +13,14 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
 
     print(f'len(data_loader.dataset) in val_epoch: {len(data_loader.dataset)}' )
 
-    for i, (data, targets, valid) in enumerate(data_loader,0):
-            print(i)
+    for data in data_loader:
+        print("Data: ", data)
 
     model.eval()
 
     with torch.no_grad():
 
-        printf("with torch.no_grad()")
+        print("with torch.no_grad()")
 
         batch_time = AverageMeter()
         data_time = AverageMeter()
