@@ -166,11 +166,7 @@ if __name__ == '__main__':
 
         validation_data = torch.utils.data.ConcatDataset([validation_data_feasibility])
 
-        print('****************************************')
-        print(opt.video_path_feasibility)
-        print(opt.annotation_path_feasibility_test)
-        print(opt.salmap_path_feasibility)
-        print(opt.audio_path_feasibility)
+        print(f"*** Size of validation_data: {vaildation_data.shape}")
         
 
         val_loader = torch.utils.data.DataLoader(
@@ -180,11 +176,14 @@ if __name__ == '__main__':
             num_workers=opt.n_threads,
             drop_last=True,
             pin_memory=True)
+        
+        print("Iterate over val_loader")
+        for data in val_loader:
+            print("Data: ", data)
+
         val_logger = Logger(
             os.path.join(opt.result_path, 'val.log'), ['epoch', 'loss', 'loss_sal', 'sal_cross', 'cc', 'nss'])
-        
-        print(len(val_loader))
-        print('****************************************')
+ 
 
     if opt.resume_path:
         print('loading checkpoint {}'.format(opt.resume_path))
