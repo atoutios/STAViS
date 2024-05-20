@@ -11,7 +11,7 @@ from models.sal_losses import cross_entropy_loss, cc_score, nss_score
 def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
     print('validation at epoch {}'.format(epoch))
 
-    print(f'len(data_loader) in val_epoch: {len(data_loader)}' )
+    print(f'len(data_loader.dataset) in val_epoch: {len(data_loader.dataset)}' )
 
     model.eval()
 
@@ -26,7 +26,8 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
         nss = AverageMeter()
 
         end_time = time.time()
-        for i, (data, targets, valid) in enumerate(data_loader):
+        for i, (data, targets, valid) in enumerate(data_loader,0):
+            print(i)
             data_time.update(time.time() - end_time)
 
             if not opt.no_cuda:
