@@ -164,10 +164,19 @@ if __name__ == '__main__':
         opt.dataset = 'feasibility'
         validation_data_feasibility = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
 
-        #validation_data = torch.utils.data.ConcatDataset([validation_data_feasibility])
+        validation_data = torch.utils.data.ConcatDataset([validation_data_feasibility])
+
+        print('****************************************')
+        print('Size of validation_data:', validation_data_feasibility.size)
+        print('Size of validation_data:', validation_data.size)
+        print(opt.video_path_feasibility)
+        print(opt.annotation_path_feasibility_test)
+        print(opt.salmap_path_feasibility)
+        print(opt.audio_path_feasibility)
+        print('****************************************')
 
         val_loader = torch.utils.data.DataLoader(
-            validation_data_feasibility,
+            validation_data,
             batch_size=opt.batch_size,
             shuffle=False,
             num_workers=opt.n_threads,
