@@ -11,7 +11,7 @@ from models.sal_losses import cross_entropy_loss, cc_score, nss_score
 def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
     print('validation at epoch {}'.format(epoch))
 
-    print(f'len(data_loader) in val_epoch: len(data_loader' )
+    print(f'len(data_loader) in val_epoch: {len(data_loader)}' )
 
     model.eval()
 
@@ -52,7 +52,7 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
 
             loss = {'sal': []}
 
-            print(f'len(outputs['sal'] {len(outputs['sal']}')
+            print(f"len(outputs['sal'] {len(outputs['sal']}"")
 
             sal_losses_BCE = [0] * len(outputs['sal'])
             sal_losses_CC = [0] * len(outputs['sal'])
@@ -69,11 +69,11 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
                                 opt.sal_weights[1] * loss['sal'][1] + \
                                 opt.sal_weights[2] * loss['sal'][2]
             
-            print(f'loss['sal_total'] {loss['sal_total']}')
+            print(f"loss['sal_total'] {loss['sal_total']}")
 
             loss_all = loss['sal_total'] / opt.batch_sizes['sal']
 
-            print(f'loss_all['sal_total'] {loss_all['sal_total']}')
+            print(f"loss_all['sal_total'] {loss_all['sal_total']}")
 
 
             loss_all_tmp = {'global': 0, 'sal': 0}
