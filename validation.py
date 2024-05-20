@@ -52,7 +52,7 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
 
             loss = {'sal': []}
 
-            print(f"len(outputs['sal'] {len(outputs['sal']}"")
+            print(f"len(outputs['sal'] {len(outputs['sal'])}")
 
             sal_losses_BCE = [0] * len(outputs['sal'])
             sal_losses_CC = [0] * len(outputs['sal'])
