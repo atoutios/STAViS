@@ -162,7 +162,7 @@ if __name__ == '__main__':
         target_transform = Label()
 
         opt.dataset = 'feasibility'
-        validation_data_feasibility = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
+        validation_data_feasibility = get_test_set(opt, spatial_transform, temporal_transform, target_transform)
 
         validation_data = torch.utils.data.ConcatDataset([validation_data_feasibility])
 
