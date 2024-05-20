@@ -11,6 +11,8 @@ from models.sal_losses import cross_entropy_loss, cc_score, nss_score
 def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
     print('validation at epoch {}'.format(epoch))
 
+    print(f'len(data_loader) in val_epoch: len(data_loader' )
+
     model.eval()
 
     with torch.no_grad():
@@ -38,6 +40,7 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
             valid['sal'] = valid['sal'].float()
 
             curr_batch_size = inputs.size(0)
+            print(f'Current batch size: {curr_batch_size}')
 
             while inputs.size(0) < opt.batch_size:
                 inputs = torch.cat((inputs, inputs[0:1, :]), 0)
@@ -48,6 +51,8 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
                 outputs['sal'][ii] = outputs['sal'][ii][0:curr_batch_size, :]
 
             loss = {'sal': []}
+
+            print(f'len(outputs['sal'] {len(outputs['sal']}')
 
             sal_losses_BCE = [0] * len(outputs['sal'])
             sal_losses_CC = [0] * len(outputs['sal'])
@@ -63,16 +68,18 @@ def val_epoch(epoch, nEpochs, data_loader, model, opt, logger):
             loss['sal_total'] = opt.sal_weights[0] * loss['sal'][0] + \
                                 opt.sal_weights[1] * loss['sal'][1] + \
                                 opt.sal_weights[2] * loss['sal'][2]
+            
+            print(f'loss['sal_total'] {loss['sal_total']}')
 
             loss_all = loss['sal_total'] / opt.batch_sizes['sal']
+
+            print(f'loss_all['sal_total'] {loss_all['sal_total']}')
+
 
             loss_all_tmp = {'global': 0, 'sal': 0}
 
             if sum(valid['sal']) > 0:
                 cc_tmp = sal_losses_CC[-1].data / nonzero(valid['sal'])[:, 0].size(0)
-                print(cc_tmp)
-                print(nonzero(valid['sal'])[:, 0].size(0))
-                print('____')
                 nss_tmp = sal_losses_NSS[-1].data / nonzero(valid['sal'])[:, 0].size(0)
                 sal_cross_tmp = torch.sum(sal_losses_BCE[-1]) / nonzero(valid['sal'])[:, 0].size(0)
                 cc.update(cc_tmp, nonzero(valid['sal'])[:, 0].size(0))
