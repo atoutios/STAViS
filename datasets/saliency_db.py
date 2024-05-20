@@ -77,7 +77,7 @@ def make_dataset(root_path, annotation_path, salmap_path, audio_path,
 	dataset = []
 	audiodata= []
 	for i in range(len(video_names)):
-		if i % 100 == 0:
+		if i % 1 == 0:
 			print('dataset loading [{}/{}]'.format(i, len(video_names)))
 
 		video_path = os.path.join(root_path, video_names[i])
@@ -137,6 +137,9 @@ def make_dataset(root_path, annotation_path, salmap_path, audio_path,
 			sample_j = copy.deepcopy(sample)
 			sample_j['frame_indices'] = list(range(j, min(n_frames + 1, j + step_duration)))
 			dataset.append(sample_j)
+
+	print(len(dataset))
+	print(len(audiodata))
 
 	return dataset, audiodata
 
