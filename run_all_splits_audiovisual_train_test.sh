@@ -2,7 +2,7 @@
 
 # Train and test STAViS audiovisual models for all splits
 
-base_path='./experiments/subtraction30'
+base_path='./experiments/td30'
 
 split=1
 results_path='split'${split}'_results'

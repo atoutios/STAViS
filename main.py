@@ -95,6 +95,7 @@ if __name__ == '__main__':
             num_workers=opt.n_threads,
             drop_last=True,
             pin_memory=True)
+        
         train_logger = Logger(
             os.path.join(opt.result_path, 'train.log'), ['epoch', 'loss', 'loss_sal', 'sal_cross', 'cc', 'nss', 'lr'])
         train_batch_logger = Logger(
@@ -162,7 +163,7 @@ if __name__ == '__main__':
         target_transform = Label()
 
         opt.dataset = 'feasibility'
-        validation_data_feasibility = get_test_set(opt, spatial_transform, temporal_transform, target_transform)
+        validation_data_feasibility = get_validation_set(opt, spatial_transform, temporal_transform, target_transform)
 
         validation_data = torch.utils.data.ConcatDataset([validation_data_feasibility])
         
