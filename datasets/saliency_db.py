@@ -157,7 +157,7 @@ class saliency_db(data.Dataset):
 				 target_transform = None,
 				 exhaustive_sampling = False,
 				 sample_duration = 16,
-				 step_duration = 32,
+				 step_duration = 8,
 				 get_loader = get_default_video_loader):
 
 		if exhaustive_sampling:
