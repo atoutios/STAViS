@@ -15,7 +15,8 @@ def get_training_set(opt, spatial_transform, temporal_transform,
 			opt.audio_path_feasibility,
 			spatial_transform=spatial_transform,
 			temporal_transform=temporal_transform,
-			target_transform=target_transform)
+			target_transform=target_transform,
+			step_duration = 32)
 	
 
 	return training_data
