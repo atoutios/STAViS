@@ -3,7 +3,7 @@
 rm -r ~/STAViS/data/annotations/feasibility
 cp -r ~/STAViS/data/annotations/ASD/feasibility ~/STAViS/data/annotations
 
-base_path='./experiments/asd50_step90'
+base_path='./experiments/asd45_step90'
 
 split=1
 results_path='split'${split}'_results'
