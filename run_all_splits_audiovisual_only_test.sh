@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# Train and test STAViS audiovisual models for all splits
+rm -r ~/STAViS/data/annotations/feasibility
+cp -r ~/STAViS/data/annotations/ASD/feasibility ~/STAViS/data/annotations
 
-base_path='./experiments/asd_step32_optimal_test'
+base_path='./experiments/asd14_step32_test'
 
 split=1
 results_path='split'${split}'_results'

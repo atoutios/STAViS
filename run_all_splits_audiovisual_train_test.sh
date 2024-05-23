@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-# Train and test STAViS audiovisual models for all splits
+rm -r ~/STAViS/data/annotations/feasibility
+cp -r ~/STAViS/data/annotations/ASD/feasibility ~/STAViS/data/annotations
 
-base_path='./experiments/asd17_step32'
+base_path='./experiments/asd20_step90'
 
 split=1
 results_path='split'${split}'_results'
 mkdir -p ${base_path}'/'${results_path}
 
 python3 main.py --gpu_devices 0 --batch_size 32 --n_threads 4 \
-    --audiovisual --checkpoint 17	 --n_epochs 17 \
+    --audiovisual --checkpoint 1	 --n_epochs 20 \
     --root_path ${base_path} --result_path ${results_path} \
 	--audio_pretrain_path ./data/pretrained_models/soundnet8.pth \
 	--pretrain_path ./data/pretrained_models/stavis_audiovisual/audiovisual_split1_save_60.pth \
