@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-rm -r ~/STAViS/data/annotations/feasibility
-cp -r ~/STAViS/data/annotations/TD/feasibility ~/STAViS/data/annotations
+source run_opts.sh
 
-base_path='./experiments/td45_step90'
+# rm -r ~/STAViS/data/annotations/feasibility
+# cp -r ~/STAViS/data/annotations/TD/feasibility ~/STAViS/data/annotations
 
-split=1
+# base_path='./experiments/td45_step90'
+
+# split=1
 results_path='split'${split}'_results'
 mkdir -p ${base_path}'/'${results_path}
 
