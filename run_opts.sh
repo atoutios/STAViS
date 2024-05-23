@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 rm -r ~/STAViS/data/annotations/feasibility
 cp -r ~/STAViS/data/annotations/TD/feasibility ~/STAViS/data/annotations
 
