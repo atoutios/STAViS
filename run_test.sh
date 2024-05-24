@@ -16,8 +16,6 @@ mkdir -p ${base_path}'/'${results_path}
 
 curr_dir=`pwd`
 cd ${base_path}/${results_path}/feasibility/${movie}
-echo ${movie}
-pwd
-mkdir _resized
-find . -maxdepth 1 -iname "*.jpg" | xargs -L1 -I{} convert -resize 640x480! "{}" _resized/"{}"
+mkdir -p resized
+find . -maxdepth 1 -iname "*.jpg" | xargs -L1 -I{} convert -resize 640x480! "{}" resized/"{}"
 cd $curr_dir
