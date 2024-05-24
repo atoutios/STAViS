@@ -16,7 +16,7 @@ def get_training_set(opt, spatial_transform, temporal_transform,
 			spatial_transform=spatial_transform,
 			temporal_transform=temporal_transform,
 			target_transform=target_transform,
-			step_duration = 32)
+			step_duration = 90)
 	
 
 	return training_data
