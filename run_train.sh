@@ -5,8 +5,8 @@ source run_opts.sh
 rm -r ~/STAViS/data/annotations/feasibility
 cp -r ~/STAViS/data/annotations/${dx}/feasibility ~/STAViS/data/annotations
 
-base_path='./experiments/${dx}_${split}'
-results_path='${dx}_split${split}'
+base_path='./experiments/'
+results_path=${dx}'_split'${split}
 mkdir -p ${base_path}'/'${results_path}
 
 python3 main.py --gpu_devices 0 --batch_size 32 --n_threads 4 \
