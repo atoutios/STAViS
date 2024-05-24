@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-rm -r ~/STAViS/data/annotations/feasibility
-cp -r ~/STAViS/data/annotations/TD/feasibility ~/STAViS/data/annotations
-
 source run_opts.sh
+
+rm -r ~/STAViS/data/annotations/feasibility
+cp -r ~/STAViS/data/annotations/${dx}/feasibility ~/STAViS/data/annotations
 
 results_path='split'${split}'_results'
 mkdir -p ${base_path}'/'${results_path}
