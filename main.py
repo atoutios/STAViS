@@ -69,7 +69,7 @@ if __name__ == '__main__':
         for param in model.module.fuseav.parameters():
             param.requires_grad = True
 
-    if opt.fusion3:
+    if opt.freeze_fusion3:
         for param in model.parameters():
             param.requires_grad = False
 
