@@ -179,6 +179,15 @@ def parse_opts():
     parser.add_argument(
         '--no_cuda', action='store_true', help='If true, cuda is not used.')
     parser.set_defaults(no_cuda=False)
+
+    parser.add_argument(
+        '--freeze_fusion3', action='store_true', help='If true, cuda is not used.')
+    parser.set_defaults(freeze_fusion3=False)
+
+    parser.add_argument(
+        '--freeze', action='store_true', help='If true, cuda is not used.')
+    parser.set_defaults(freeze=False)
+
     parser.add_argument(
         '--n_threads',
         default=4,

@@ -12,7 +12,7 @@ if __name__ == '__main__':
     torch.backends.cudnn.benchmark = False  # type: bool
 
     opt = parse_opts()
-    os.environ["CUDA_VISIBLE_DEVICES"] = opt.gpu_devices
+    #os.environ["CUDA_VISIBLE_DEVICES"] = opt.gpu_devices
     opt.result_path = os.path.join(opt.root_path, opt.result_path)
     if not os.path.exists(opt.result_path):
         os.makedirs(opt.result_path)
@@ -41,5 +41,20 @@ if __name__ == '__main__':
 
     model, parameters = generate_model(opt)
     print(model)
+    print(model.module.fusion3)
+
+    # Freeze all layers
+    for param in model.parameters():
+        param.requires_grad = False
+
+    for param in model.module.fusion3.parameters():
+        param.requires_grad = True
+
+    for param in model.module.fuse.parameters():
+        param.requires_grad = True
+
+    for param in model.module.fuseav.parameters():
+        param.requires_grad = True
+
 
     

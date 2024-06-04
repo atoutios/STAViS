@@ -56,6 +56,27 @@ if __name__ == '__main__':
     model, parameters = generate_model(opt)
     print(model)
 
+    if opt.freeze:
+        for param in model.parameters():
+            param.requires_grad = False
+
+        for param in model.module.fusion3.parameters():
+            param.requires_grad = True
+
+        for param in model.module.fuse.parameters():
+            param.requires_grad = True
+
+        for param in model.module.fuseav.parameters():
+            param.requires_grad = True
+
+    if opt.fusion3:
+        for param in model.parameters():
+            param.requires_grad = False
+
+        for param in model.module.fusion3.parameters():
+            param.requires_grad = True
+
+
     if opt.no_mean_norm and not opt.std_norm:
         norm_method = Normalize([0, 0, 0], [1, 1, 1])
     elif not opt.std_norm:
